@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://y4vcwrmyo14r"]
+
+[ext_resource type="LabelSettings" uid="uid://bfopi0cjbn53u" path="res://label_settings.tres" id="1_lp6gu"]
+[ext_resource type="Script" path="res://start_menu.gd" id="1_tjm74"]
+[ext_resource type="PackedScene" uid="uid://blyb5emasvqhf" path="res://star_particles.tscn" id="3_syfce"]
+
+[node name="StartMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_tjm74")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "press \"space\" to start
+press \"esc\" to quit"
+label_settings = ExtResource("1_lp6gu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarParticles" parent="." instance=ExtResource("3_syfce")]

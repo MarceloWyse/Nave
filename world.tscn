@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://doaux72bhov7k"]
+
+[ext_resource type="PackedScene" uid="uid://1q388t4n1bih" path="res://ship.tscn" id="1_4o5gr"]
+[ext_resource type="Script" path="res://world.gd" id="1_sd0pl"]
+[ext_resource type="LabelSettings" uid="uid://bfopi0cjbn53u" path="res://label_settings.tres" id="2_3wu3w"]
+[ext_resource type="PackedScene" uid="uid://b6msaicl15kdb" path="res://enemy_spawner.tscn" id="2_e4yfk"]
+[ext_resource type="PackedScene" uid="uid://blyb5emasvqhf" path="res://star_particles.tscn" id="5_3bj3q"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_sd0pl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 2
+offset_left = 100.0
+offset_top = 1.0
+offset_right = 223.0
+offset_bottom = 13.0
+text = "Score = 0"
+label_settings = ExtResource("2_3wu3w")
+horizontal_alignment = 1
+
+[node name="Ship" parent="." instance=ExtResource("1_4o5gr")]
+position = Vector2(28, 54)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("2_e4yfk")]
+position = Vector2(320, 0)
+
+[node name="StarParticles" parent="." instance=ExtResource("5_3bj3q")]
+
+[connection signal="ship_destroyed" from="Ship" to="." method="_on_ship_ship_destroyed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://44ot0sbrr2te"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_2lsh5"]
+[ext_resource type="Texture2D" uid="uid://d08xj6n7lsfnf" path="res://enemy.png" id="1_tiixp"]
+[ext_resource type="PackedScene" uid="uid://dyn5nrnxmo4vu" path="res://effect_creator.tscn" id="3_hvpxd"]
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_2lsh5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tiixp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -2, 1, -7, 3, -7, 5, -5, 5, 5, 3, 7, 1, 7, -5, 2)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, -4.76837e-07)
+scale = Vector2(0.55, 0.8)
+
+[node name="EffectCreator" parent="." instance=ExtResource("3_hvpxd")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

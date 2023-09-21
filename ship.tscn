@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://1q388t4n1bih"]
+
+[ext_resource type="Script" path="res://ship.gd" id="1_f866y"]
+[ext_resource type="Texture2D" uid="uid://dnsb7guuqk8x5" path="res://ship.png" id="1_hoc72"]
+[ext_resource type="PackedScene" uid="uid://dyn5nrnxmo4vu" path="res://effect_creator.tscn" id="3_qiv4k"]
+
+[node name="Ship" type="Area2D"]
+z_index = 1
+script = ExtResource("1_f866y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hoc72")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -4, -4, -4, -4, -7, -2, -7, 3, -2, 5, -2, 5, -1, 7, -1, 7, 1, 5, 1, 5, 2, 3, 2, -2, 7, -4, 7, -4, 4, -7, 4)
+
+[node name="EffectCreator" parent="." instance=ExtResource("3_qiv4k")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
